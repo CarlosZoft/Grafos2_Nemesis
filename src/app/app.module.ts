@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
+import { GraphService } from './graph.service';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { MaterialModule } from './material.module';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [GraphService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

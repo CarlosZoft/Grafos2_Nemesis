@@ -1,12 +1,11 @@
-import mazes from './mazes';
 import MazeInterface from './MazeInterface';
 
-const shortestDistanceNode = (distances:any, visited:string[]):string => {
+const shortestDistanceNode = (cost:any, visited:string[]):string => {
 	let shortest:string = '';
 
-	for (let node in distances) {
+	for (let node in cost) {
         if (shortest === '') {
-            let currentIsShortest = shortest === '' || distances[node] < distances[shortest];
+            let currentIsShortest = shortest === '' || cost[node] < cost[shortest];
             if (currentIsShortest && !visited.includes(node)) {
                 shortest = node;
             }
@@ -16,37 +15,35 @@ const shortestDistanceNode = (distances:any, visited:string[]):string => {
 };
 
 const dijkstra = (graph:MazeInterface) => {
-	let distances:any = Object.assign({'euterpe': 'Infinity'}, graph['hercules']);
-	let parents = Object.assign({ 'euterpe': null });
+	let cost:any = Object.assign({'Euterpe': 'Infinity'}, graph['Hercules']);
+	let parents = Object.assign({ 'Euterpe': null });
 
-    for (let child in graph['hercules']) {
-        parents[child] = 'hercules'
+    for (let child in graph['Hercules']) {
+        parents[child] = 'Hercules'
 	}
 	
 	let visited:string[] = [];
 	
-	let node = shortestDistanceNode(distances, visited);
+	let node = shortestDistanceNode(cost, visited);
 
 	while (node !== '') {
-		let distance = distances[node];
+		let distance = cost[node];
 		let children = graph[node];
-		// console.log(node);
 		for (let child in children) {
-			// console.log("AQUI")
-			if (String(child) !== String('hercules')) {
+			if (String(child) !== String('Hercules')) {
 				let newdistance = distance + children[child];
-				if (!distances[child] || distances[child] > newdistance) {
-					distances[child] = newdistance;
+				if (!cost[child] || cost[child] > newdistance) {
+					cost[child] = newdistance;
 					parents[child] = node;
 				}
 			}
 		}
 		visited.push(node);
-		node = shortestDistanceNode(distances, visited);
+		node = shortestDistanceNode(cost, visited);
 	}
 	
-	let shortestPath = ['euterpe'];
-	let parent = parents['euterpe'];
+	let shortestPath = ['Euterpe'];
+	let parent = parents['Euterpe'];
 	while (parent) {
 		shortestPath.push(parent);
 		parent = parents[parent];
@@ -54,7 +51,7 @@ const dijkstra = (graph:MazeInterface) => {
 	shortestPath.reverse();
 
 	let results = {
-		distance: distances['euterpe'],
+		distance: cost['Euterpe'],
 		path: shortestPath,
 	};
 
