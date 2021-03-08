@@ -7,21 +7,14 @@
 
 <br />
 
-<p class="description">[Instructions]</p>
+<p class="description">{{ valueTotal }}</p>
 
-<mat-grid-list cols="2" rowHeight="4:1" [formGroup]="tableForm">
-  <mat-grid-tile>
-    <mat-form-field appearance="fill">
-      <mat-label>Quantas linhas?</mat-label>
-      <input matInput placeholder="10" formControlName="rowValue">
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-form-field appearance="fill" class="">
-      <mat-label>Quantas colunas?</mat-label>
-      <input matInput placeholder="10" formControlName="columnValue">
-    </mat-form-field>
+<mat-grid-list *ngFor="let item of maze" cols="15" rowHeight="4:1" style="padding: 30px;">
+  <mat-grid-tile *ngFor="let i of item">
+    <mat-card [ngStyle]="{'background-color': i.color}">{{ i.text }}</mat-card>
   </mat-grid-tile>
 </mat-grid-list>
+
+<br />
 
 <router-outlet></router-outlet>
