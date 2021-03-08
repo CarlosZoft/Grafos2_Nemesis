@@ -51,7 +51,7 @@ const shortestDistanceNode = (distances, visited) => {
 
 	for (let node in distances) {
 		let currentIsShortest =
-			shortest === null || distances[node] < distances[shortest];
+		shortest === null || distances[node] < distances[shortest];
 		if (currentIsShortest && !visited.includes(node)) {
 			shortest = node;
 		}
@@ -63,6 +63,7 @@ const dijkstra = (graph) => {
 	let distances = {};
 	distances['euterpe'] = "Infinity";
 	distances = Object.assign(distances, graph.get('hercules'));
+	// console.log(distances)
 	let parents = { 'euterpe': null };
 	for (let child in graph.get('hercules')) {
 		parents[child] = 'hercules';
@@ -71,8 +72,9 @@ const dijkstra = (graph) => {
 	let visited = [];
 	
 	let node = shortestDistanceNode(distances, visited);
-
+	
 	while (node) {
+		console.log(node)
 		let distance = distances[node];
 		let children = graph.get(node);
 		// console.log(node);
@@ -138,7 +140,7 @@ const graph = {
 let newGraph = generateGraph()
 generateEdges(newGraph);
 
-console.log(newGraph.adjList);
+// console.log(newGraph.adjList);
 // dijkstra(graph);
 const shortestPath = dijkstra(newGraph.adjList);
 console.log(shortestPath)

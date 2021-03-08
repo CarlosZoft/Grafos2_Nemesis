@@ -12,6 +12,7 @@ class Graph {
     }
 
     addEdge(nodeFather: string, nodeSon: string) {
+		this.adjList.get(nodeFather).
 		let weight = Math.floor(Math.random()*20)+1;
 		if (nodeFather !== nodeSon) {
 			this.adjList.get(nodeFather)?.push({nodeSon: weight});
