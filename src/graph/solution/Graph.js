@@ -19,12 +19,12 @@ class Graph {
     }
 
     addVertex(node) {
-		this.adjList.set(node, {})
+		this.adjList.set(node, [])
     }
 
     addEdge(nodeFather, nodeSon) {
 		let weight = Math.floor(Math.random()*20)+1;
-		this.adjList.get(nodeFather)?.set(nodeSon, weight);
+		this.adjList.get(nodeFather)[nodeSon] = weight;
 	}
 
 	printGraph() {
@@ -116,14 +116,12 @@ function generateGraph() {
 }
 
 function generateEdges(graph) {
-	for(let characterName in graph) {
-		console.log(characterName)
+	graph.adjList.forEach((_, characterName) => {
 		let links = Math.floor(Math.random()*4) + 1;
 		for (let i = 0; i < links; i++) {
 			graph.addEdge(characterName, monster[Math.floor(Math.random()*7)]);
-			console.log(graph)
 		}
-	}
+	});
 }
 
 const graph = {
@@ -136,6 +134,7 @@ const graph = {
 };
 
 let newGraph = generateGraph()
-generateEdges(graph);
-// const shortestPath = dijkstra(graph);
-// console.log(shortestPath)
+generateEdges(newGraph);
+
+const shortestPath = dijkstra(newGraph.adjList);
+console.log(shortestPath)
