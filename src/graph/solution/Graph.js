@@ -6,9 +6,6 @@ let monster = [
 	'Zeus',
 	'Poseidon',
 	'Elvira',
-]
-
-let save = [
 	'euterpe',
 	'hercules'
 ]
@@ -24,7 +21,9 @@ class Graph {
 
     addEdge(nodeFather, nodeSon) {
 		let weight = Math.floor(Math.random()*20)+1;
-		this.adjList.get(nodeFather)[nodeSon] = weight;
+		if (nodeFather !== nodeSon) {
+			this.adjList.get(nodeFather)[nodeSon] = weight;
+		}
 	}
 
 	printGraph() {
@@ -60,21 +59,22 @@ const shortestDistanceNode = (distances, visited) => {
 const dijkstra = (graph) => {
 	let distances = {};
 	distances['euterpe'] = "Infinity";
-	distances = Object.assign(distances, graph['hercules']);
-
-  let parents = { 'euterpe': null };
-	for (let child in graph['hercules']) {
+	distances = Object.assign(distances, graph.get('hercules'));
+	let parents = { 'euterpe': null };
+	for (let child in graph.get('hercules')) {
 		parents[child] = 'hercules';
 	}
-
+	
 	let visited = [];
-
+	
 	let node = shortestDistanceNode(distances, visited);
 
 	while (node) {
 		let distance = distances[node];
-		let children = graph[node];
+		let children = graph.get(node);
+		// console.log(node);
 		for (let child in children) {
+			// console.log("AQUI")
 			if (String(child) !== String('hercules')) {
 				let newdistance = distance + children[child];
 				if (!distances[child] || distances[child] > newdistance) {
@@ -86,7 +86,7 @@ const dijkstra = (graph) => {
 		visited.push(node);
 		node = shortestDistanceNode(distances, visited);
 	}
-
+	
 	let shortestPath = ['euterpe'];
 	let parent = parents['euterpe'];
 	while (parent) {
@@ -106,12 +106,9 @@ const dijkstra = (graph) => {
 
 function generateGraph() {
 	let graph = new Graph();
-	const size = Math.floor(Math.random()*20);
-	for (let i = 0; i < size; i++) {
-		graph.addVertex(monster[Math.floor(Math.random()*7)]);
+	for (let m of monster) {
+		graph.addVertex(m);
 	}
-	graph.addVertex(save[0]);
-	graph.addVertex(save[1]);
 	return graph;
 }
 
@@ -119,7 +116,9 @@ function generateEdges(graph) {
 	graph.adjList.forEach((_, characterName) => {
 		let links = Math.floor(Math.random()*4) + 1;
 		for (let i = 0; i < links; i++) {
-			graph.addEdge(characterName, monster[Math.floor(Math.random()*7)]);
+			if (characterName !== 'euterpe') {
+				graph.addEdge(characterName, monster[Math.floor(Math.random()*9)]);
+			}
 		}
 	});
 }
@@ -136,5 +135,7 @@ const graph = {
 let newGraph = generateGraph()
 generateEdges(newGraph);
 
+console.log(newGraph.adjList);
+// dijkstra(graph);
 const shortestPath = dijkstra(newGraph.adjList);
 console.log(shortestPath)
