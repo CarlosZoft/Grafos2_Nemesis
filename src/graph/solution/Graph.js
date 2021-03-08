@@ -16,10 +16,13 @@ class Graph {
     }
 
     addVertex(node) {
-		this.adjList.set(node, [])
+		this.adjList.set(node, {})
     }
 
     addEdge(nodeFather, nodeSon) {
+		if (nodeFather in this.adjList.get(nodeSon)) {
+			return;
+		}
 		let weight = Math.floor(Math.random()*20)+1;
 		if (nodeFather !== nodeSon) {
 			this.adjList.get(nodeFather)[nodeSon] = weight;
