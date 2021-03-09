@@ -15,6 +15,7 @@ Agora você nobre semideus tem a responsabilidade de salvar a musa da música.
 Você deve ajudar Hércules a percorrer o menor caminho para salvar Euterpe. 
 A distância percorrida depende da força de cada vilão, descubra você mesmo.
 Esse projeto é inspirado na questão [1972](https://www.urionlinejudge.com.br/judge/pt/problems/view/1972) do URI.
+O projeto utilizar o algoritmo de Dijkstra para fazer a busca do menor caminho.
 Brinque no projeto nesse link: https://nemesis-grafos2.netlify.app
 
 
