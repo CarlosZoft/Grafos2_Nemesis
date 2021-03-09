@@ -12,20 +12,42 @@
 ## Sobre 
 Ajude Hércules a salvar Euterpe. Nemêsis irratada com Euterpe, a joga em um labirinto. 
 Agora você nobre semideus tem a responsabilidade de salvar a musa da música.
-No projeto, você deve determinar o tamanho do labirinto. Logo em seguida construa o labirinto de uma
-forma em que você Hércules vá conseguir salvar a Musa Euterpe.
+Você deve ajudar Hércules a percorrer o menor caminho para salvar Euterpe. 
+A distância percorrida depende da força de cada vilão, descubra você mesmo.
 Esse projeto é inspirado na questão [1972](https://www.urionlinejudge.com.br/judge/pt/problems/view/1972) do URI.
+Brinque no projeto nesse link: https://nemesis-grafos2.netlify.app
+
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+![Captura de tela de 2021-03-08 21-54-58](https://user-images.githubusercontent.com/35435199/110401837-194f3c80-8059-11eb-8fb4-ea632c869f03.png)
+
+![Captura de tela de 2021-03-08 21-55-19](https://user-images.githubusercontent.com/35435199/110401874-2c620c80-8059-11eb-9bb8-b5f948f42e6c.png)
+
+![Captura de tela de 2021-03-08 21-55-33](https://user-images.githubusercontent.com/35435199/110401893-371ca180-8059-11eb-9492-7b0d08972830.png)
 
 ## Instalação 
 **Linguagem**: Javascript<br>
-**Framework**: Angular<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Framework**: NodeJs para o Back e Angular para o Front<br>
+
+Para rodar, vai ser necessário ter o node instalado. Para isso, recomendamos seguir a documentação oficial: https://nodejs.org/pt-br/download/package-manager/
+
+### Front
+
+Para rodar o front, é necessário entrar na pasta `front`.
+
+Caso não tenha o angular instalado, rode o seguinte comando:
+
+`npm install -g @angular/cli`
+
+Se quiser, pode verificar a instalação com o comando: `ng — version`.
+
+Agora tudo o que precisa fazer é instalar as depêndencias (`npm install`) e rodar o projeto:
+
+`ng serve`
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+Para fazer uso do projeto, entre na rota do front. Lá você poderá utilizar brincar no labirinto.
+O projeto também está disponível no link: https://nemesis-grafos2.netlify.app
 
 ## Outros 
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
